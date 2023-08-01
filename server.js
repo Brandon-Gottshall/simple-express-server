@@ -10,6 +10,12 @@ dotenv.config()
 // Setup Postgres pool
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 
+// Setup Postgres client
+const client = (async () => {
+  const client = await pool.connect()
+  return client
+})()
+
 // Setup OpenAI client
 const { OpenAIApi, Configuration } = require('openai')
 // Configure OpenAI client
@@ -65,7 +71,6 @@ app.get('/new/:topic', async (req, res) => {
 
 // Save quotes to database
 app.post('/save', async (req, res) => {
-  const client = await pool.connect()
   // Get quote from req
   const quote = req.body.quote
   // Save quote to database
@@ -76,7 +81,6 @@ app.post('/save', async (req, res) => {
 // Fetch all quotes
 
 app.get('/quotes', async (req, res) => {
-  const client = await pool.connect()
   const quotes = await client.query('SELECT * FROM quotes')
   res.send(quotes.rows)
 })
@@ -84,7 +88,6 @@ app.get('/quotes', async (req, res) => {
 // Delete quotes
 
 app.delete('/delete/:id', async (req, res) => {
-  const client = await pool.connect()
   const id = req.params.id
   await client.query('DELETE FROM quotes WHERE id = $1', [id])
   res.status(200).send('Quote deleted!')
