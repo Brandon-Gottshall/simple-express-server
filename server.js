@@ -22,7 +22,7 @@ const PORT = process.env.SERVER_PORT || process.env.PORT || 3001
 // Setup Root Route (For testing)
 
 app.get('/', (req, res) => {
-  res.send('Best quote ever!')
+  res.send(JSON.stringify('Best quote ever!'))
 })
 
 // app.listen
