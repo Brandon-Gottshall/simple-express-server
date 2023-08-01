@@ -28,5 +28,5 @@ app.get('/', (req, res) => {
 // app.listen
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`)
+  console.log(JSON.stringify(`Server listening on port ${PORT}`))
 })
