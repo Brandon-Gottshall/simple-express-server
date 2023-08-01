@@ -11,6 +11,9 @@ const express = require('express')
 const app = express()
 
 // Setup cors
+const cors = require('cors')
+
+// Setup cors
 app.use(
   cors({
     origin: 'localhost',
