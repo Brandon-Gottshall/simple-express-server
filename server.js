@@ -3,13 +3,19 @@ dotenv = require('dotenv')
 
 // Setup dotenv
 dotenv.config()
-console.log(process.env)
 
 // Setup Express server
 const express = require('express')
 
 // Setup Express app
 const app = express()
+
+// Setup cors
+app.use(
+  cors({
+    origin: 'localhost',
+  })
+)
 
 // Setup port
 const PORT = process.env.SERVER_PORT || process.env.PORT || 3001
