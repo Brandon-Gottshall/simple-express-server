@@ -14,11 +14,7 @@ const app = express()
 const cors = require('cors')
 
 // Setup cors
-app.use(
-  cors({
-    origin: 'localhost',
-  })
-)
+app.use(cors())
 
 // Setup port
 const PORT = process.env.SERVER_PORT || process.env.PORT || 3001
