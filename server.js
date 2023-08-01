@@ -11,9 +11,9 @@ dotenv.config()
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 
 // Setup Postgres client
-const client = (async () => {
-  const client = await pool.connect()
-  return client
+let client
+;(async () => {
+  client = await pool.connect()
 })()
 
 // Setup OpenAI client
