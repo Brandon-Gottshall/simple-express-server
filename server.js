@@ -12,7 +12,7 @@ const express = require('express')
 const app = express()
 
 // Setup port
-const PORT = process.env.SERVER_PORT || 3001
+const PORT = process.env.SERVER_PORT || process.env.PORT || 3001
 
 // Setup Root Route (For testing)
 
