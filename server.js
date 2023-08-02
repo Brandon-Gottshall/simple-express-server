@@ -75,7 +75,12 @@ app.post('/save', async (req, res) => {
   const quote = req.body.quote
   // Save quote to database
   await client.query('INSERT INTO quotes (quote) VALUES ($1)', [quote])
-  res.status(200).send('Quote saved!')
+
+  // get id of quote
+  const id = await client.query('SELECT id FROM quotes WHERE quote = $1', [
+    quote,
+  ])
+  res.status(200).send(id.rows[0].id.toString())
 })
 
 // Fetch all quotes
